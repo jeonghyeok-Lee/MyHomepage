@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(board) + 파일명(boardMapper)으로 조합
+하지만 너무 길어 좋은 방법은 아님 - 가독성도 낮고 쉽게 읽고 찾기가 어려움 
+즉 간단하게 서비스명으로 줄여서 사용하는 것을 권장
+일단 임시로 이렇게 작성
+ -->
+<mapper namespace="com.argonhome.web.board.boardMapper">
+	<!-- 리스트 검색 -->
+	<select id ="getBoardList" resultType = "com.argonhome.web.board.model.BoardVO">
+		SELECT *
+		FROM BOARD
+	</select>
+	
+	<select id ="getBoardContent" resultType = "com.argonhome.web.board.model.BoardVO">
+		SELECT *
+		FROM BOARD
+		WHERE BID = #{bid}
+	</select>
+	
+	<!-- 리스트에 추가 -->
+	<insert id ="insertBoard" parameterType = "com.argonhome.web.board.model.BoardVO">
+		INSERT INTO BOARD(BCATEGORY, BTITLE, BCONTEXT, BTAG, BVIEW_CNT,BWRITER, BWRITE_DY, BEDIT_DY)
+		VALUES(
+			#{getBcategory}
+			,#{getBtitle}
+			,#{getBcontent}
+			,#{getBtag}
+			,0
+			,#{getBwriter}
+			,now()
+			,now()
+		)
+	</insert>
+	
+	<!-- mybatis에서 #과 $의 차이
+		# -> PreparedStatement로 db에 넘어갈떄 #{}부분은 넘어가지 않지만 수행시에는 #{}값을 가지고 수행 즉 #{}의 값이 달라져도 같은 쿼리고 인식
+		주로 사용자의 입력을 받는 경우나 데이터가 많은 경우 사용
+		
+		$ -> Statement 			db에 넘어갈때 ${}부분도 같이 넘어감 즉, ${}부분의 값이 달라질 경우 다른 쿼리로 인식
+		주로 자주바뀌지 않거나 사용자의 입력을 받는 경우가 아닐때 사용하면 좋음
+	 -->
+	
+	<update id="updateBoard" parameterType = "com.argonhome.web.board.model.BoardVO" >
+		UPDATE BOARD SET 
+			BCATEGORY = #{getBcategory}
+			,BTITLE = #{getBtitle}
+			,BCONTENT = #{getBcontent}
+			,BTAG = #{getBtag}
+			,BEDIT_DY = now()
+		WHERE 
+			BID =${bid}
+	</update>
+	
+	<delete id="deleteBoard" parameterType = "int">
+		DELETE FROM BOARD
+		WHERE BID = #{bid}
+	</delete>
+	
+	<update id="updateViewCnt" parameterType="com.argonhom.web.board.model.BoardVO">
+		UPDATE BOARD SET
+			BVIEW_CNT = BVIEW_CNT+1
+		WHERE
+			BID = #{bid}
+	</update>
+</mapper>
+
