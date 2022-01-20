@@ -38,13 +38,13 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public int updateBoard(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.update("com.argonhome.web.board.boardMapper.insertBoard",boardVO);
+		return sqlSession.update("com.argonhome.web.board.boardMapper.updateBoard",boardVO);
 	}
 
 	@Override
 	public int deleteBoard(int bid) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("com.argonhome.web.board.boardMapper.insertBoard",bid);
+		return sqlSession.insert("com.argonhome.web.board.boardMapper.deleteBoard",bid);
 	}
 
 	@Override
