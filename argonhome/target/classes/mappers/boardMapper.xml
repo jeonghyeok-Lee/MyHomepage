@@ -19,19 +19,19 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 	<select id ="getBoardContent" resultType = "com.argonhome.web.board.model.BoardVO">
 		SELECT BID,BCATEGORY,BTITLE,BCONTEXT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
 		FROM BOARD
-		WHERE BID = #{getBid}
+		WHERE BID = #{getBid()}
 	</select>
 	
 	<!-- 리스트에 추가 -->
 	<insert id ="insertBoard" parameterType = "com.argonhome.web.board.model.BoardVO">
 		INSERT INTO BOARD(BCATEGORY, BTITLE, BCONTEXT, BTAG, BVIEW_CNT,BWRITER, BWRITE_DY, BEDIT_DY)
 		VALUES(
-			#{getBcategory}
-			,#{getBtitle}
-			,#{getBcontent}
-			,#{getBtag}
+			#{bcategory}
+			,#{btitle}
+			,#{bcontext}
+			,#{btag}
 			,0
-			,#{getBwriter}
+			,#{bwriter}
 			,now()
 			,now()
 		)
@@ -47,10 +47,10 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 	
 	<update id="updateBoard" parameterType = "com.argonhome.web.board.model.BoardVO" >
 		UPDATE BOARD SET 
-			BCATEGORY = #{getBcategory}
-			,BTITLE = #{getBtitle}
-			,BCONTENT = #{getBcontent}
-			,BTAG = #{getBtag}
+			BCATEGORY = #{bcategory}
+			,BTITLE = #{btitle}
+			,BCONTENT = #{bcontext}
+			,BTAG = #{btag}
 			,BEDIT_DY = now()
 		WHERE 
 			BID =${bid}
@@ -61,11 +61,11 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 		WHERE BID = #{bid}
 	</delete>
 	
-	<update id="updateViewCnt" parameterType="com.argonhom.web.board.model.BoardVO">
+	<update id="updateViewCnt" parameterType="com.argonhome.web.board.model.BoardVO">
 		UPDATE BOARD SET
 			BVIEW_CNT = BVIEW_CNT+1
 		WHERE
-			BID = #{getBid}
+			BID = #{bid}
 	</update>
 </mapper>
 

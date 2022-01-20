@@ -10,7 +10,7 @@ public class BoardVO {
 	private int bid;
 	private String bcategory;
 	private String btitle;
-	private String bcontent;
+	private String bcontext;
 	private String btag;
 	private int bview_cnt;
 	private String bwriter;
@@ -35,11 +35,11 @@ public class BoardVO {
 	public void setBtitle(String btitle) {
 		this.btitle = btitle;
 	}
-	public String getBcontent() {
-		return bcontent;
+	public String getBcontext() {
+		return bcontext;
 	}
-	public void setBcontent(String bcontent) {
-		this.bcontent = bcontent;
+	public void setBcontext(String bcontext) {
+		this.bcontext = bcontext;
 	}
 	public String getBtag() {
 		return btag;
@@ -73,7 +73,7 @@ public class BoardVO {
 	}
 	@Override
 	public String toString() {
-		return "BoardVO [bid=" + bid + ", bcategory=" + bcategory + ", btitle=" + btitle + ", bcontent=" + bcontent
+		return "BoardVO [bid=" + bid + ", bcategory=" + bcategory + ", btitle=" + btitle + ", bcontext=" + bcontext
 				+ ", btag=" + btag + ", bview_cnt=" + bview_cnt + ", bwriter=" + bwriter + ", bwrite_dy=" + bwrite_dy
 				+ ", bedit_dy=" + bedit_dy + "]";
 	}
