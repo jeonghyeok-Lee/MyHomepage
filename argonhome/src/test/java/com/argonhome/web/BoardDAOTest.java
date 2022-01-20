@@ -24,6 +24,7 @@ import com.argonhome.web.board.model.BoardVO;
 public class BoardDAOTest {
 	private static final Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 	
+	@Inject
 	private BoardDAO boardDAO;
 	
 	@Test 

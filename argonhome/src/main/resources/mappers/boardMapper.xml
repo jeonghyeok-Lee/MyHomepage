@@ -12,14 +12,14 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 <mapper namespace="com.argonhome.web.board.boardMapper">
 	<!-- 리스트 검색 -->
 	<select id ="getBoardList" resultType = "com.argonhome.web.board.model.BoardVO">
-		SELECT *
+		SELECT BID,BCATEGORY,BTITLE,BCONTEXT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
 		FROM BOARD
 	</select>
 	
 	<select id ="getBoardContent" resultType = "com.argonhome.web.board.model.BoardVO">
-		SELECT *
+		SELECT BID,BCATEGORY,BTITLE,BCONTEXT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
 		FROM BOARD
-		WHERE BID = #{bid}
+		WHERE BID = #{getBid}
 	</select>
 	
 	<!-- 리스트에 추가 -->
@@ -65,7 +65,7 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 		UPDATE BOARD SET
 			BVIEW_CNT = BVIEW_CNT+1
 		WHERE
-			BID = #{bid}
+			BID = #{getBid}
 	</update>
 </mapper>
 

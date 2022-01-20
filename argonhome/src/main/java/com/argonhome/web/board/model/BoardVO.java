@@ -5,6 +5,7 @@ package com.argonhome.web.board.model;
 // DTO -> 계층간 데이터 교환을 위해 사용되는 객체로 로직이 없고 getter/setter메소드만 갖음
 // VO  -> 값 자체를 표현한 객체로, 로직 포함, 객체의 불변성을 보장
 // Entity -> 실제 DB의 테이블과 매핑되는 객체
+
 public class BoardVO {
 	private int bid;
 	private String bcategory;

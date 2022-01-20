@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.argonhome.web.board.model.BoardVO;
 
 
-
+@Repository
 public class BoardDAOImpl implements BoardDAO {
 	
 	private SqlSession sqlSession;	// 해당 객체를 통해 boardMapper에 작성해 놓은 sql문 실행 가능
