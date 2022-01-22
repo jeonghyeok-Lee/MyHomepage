@@ -15,7 +15,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- BoardDAOTest 실행을 위해 ContextConfiguration에 "classpath:servlet-context.xml" 추가후 해당 resources부분을 주석처리하였음 아직 이유를 발견하지 못해서 알아봐야함 -->
-	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
+<!-- 	<resources mapping="/resources/**" location="/resources/" /> -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<!-- 
