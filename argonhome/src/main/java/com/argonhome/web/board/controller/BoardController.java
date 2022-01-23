@@ -7,8 +7,10 @@ import com.argonhome.web.board.model.BoardVO;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 // RequestMapping(value ="") 어노테이션을 통해서 주소를 조합할 수 있다.
@@ -24,6 +26,24 @@ public class BoardController {
 	public String getBoardList(Model model) throws Exception{
 		model.addAttribute("boardList",boardService.getBoardList());
 		return "board/index";
+	}
+	
+	// 글쓰기 버튼클릭시 
+	@RequestMapping("/boardForm")
+	public String boardForm() {
+		return "board/BoardForm";
+	}
+	
+	/*
+	 * @ModelAttribute("BoardVO") BoardVO boardVO - 해당인자는 화면에서 넘겨주는 값을 BoardVO와 매칭하여 데이터를 가져오게됨
+	 * RedirectAttributes rttr - 해당인자는 글쓰기를 작성이후 돌아가야할 페이지에 데이터를 전달하기 위한 인자
+	 * 			+ 브라우저의 뒤로가기 버튼의 대응책 => 글쓰기 화면 -> 저장 단계(서버) -> 리스트 화면 순서인데 뒤로가기로 가면 저장단계를 계속 중복으로 가게됨 해당인자사용시 글쓰기화면으로 이동함
+	 * */
+	@RequestMapping(value = "/saveBoard", method = RequestMethod.POST)
+	public String saveBoard(@ModelAttribute("BoardVO") BoardVO boardVO, RedirectAttributes rttr) throws Exception{
+		boardService.insertBoard(boardVO);
+		// 돌아갈 페이지 주소를 지정
+		return "redirecet:/board/getBoardList";
 	}
 }
 /*

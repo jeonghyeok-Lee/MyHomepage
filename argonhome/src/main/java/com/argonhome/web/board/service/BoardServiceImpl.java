@@ -1,6 +1,7 @@
 package com.argonhome.web.board.service;
 
 import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +20,11 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> getBoardList() throws Exception {
 		// TODO Auto-generated method stub
 		return boardDAO.getBoardList();
+	}
+	
+	@Override
+	public void insertBoard(BoardVO boardVO) throws Exception{
+		boardDAO.insertBoard(boardVO);
 	}
 
 }
