@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+
 <title>Insert title here</title>
 <script>
 	$(document).on('click', '#btnSave', function(e){	// 버튼클릭시 

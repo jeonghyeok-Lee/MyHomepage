@@ -15,10 +15,9 @@
 	crossorigin="anonymous">
 
 <!-- common CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/common/css/common.css">
+<link rel="stylesheet" href="src/main/resources/common/css/common.css">
 
-<title>Insert title here</title>
+<title>MyHomepage</title>
 </head>
 <body>
 
