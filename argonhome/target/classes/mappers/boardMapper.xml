@@ -12,23 +12,23 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 <mapper namespace="com.argonhome.web.board.boardMapper">
 	<!-- 리스트 검색 -->
 	<select id ="getBoardList" resultType = "com.argonhome.web.board.model.BoardVO">
-		SELECT BID,BCATEGORY,BTITLE,BCONTEXT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
+		SELECT BID,BCATEGORY,BTITLE,BCONTENT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
 		FROM BOARD
 	</select>
 	
 	<select id ="getBoardContent" resultType = "com.argonhome.web.board.model.BoardVO">
-		SELECT BID,BCATEGORY,BTITLE,BCONTEXT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
+		SELECT BID,BCATEGORY,BTITLE,BCONTENT,BTAG,BVIEW_CNT,BWRITER,BWRITE_DY,BEDIT_DY 
 		FROM BOARD
 		WHERE BID = #{getBid()}
 	</select>
 	
 	<!-- 리스트에 추가 -->
 	<insert id ="insertBoard" parameterType = "com.argonhome.web.board.model.BoardVO">
-		INSERT INTO BOARD(BCATEGORY, BTITLE, BCONTEXT, BTAG, BVIEW_CNT,BWRITER, BWRITE_DY, BEDIT_DY)
+		INSERT INTO BOARD(BCATEGORY, BTITLE, BCONTENT, BTAG, BVIEW_CNT,BWRITER, BWRITE_DY, BEDIT_DY)
 		VALUES(
 			#{bcategory}
 			,#{btitle}
-			,#{bcontext}
+			,#{bcontent}
 			,#{btag}
 			,0
 			,#{bwriter}
@@ -49,7 +49,7 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 		UPDATE BOARD SET 
 			BCATEGORY = #{bcategory}
 			,BTITLE = #{btitle}
-			,BCONTEXT = #{bcontext}
+			,BCONTENT = #{bcontent}
 			,BTAG = #{btag}
 			,BEDIT_DY = now()
 		WHERE 

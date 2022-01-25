@@ -49,7 +49,7 @@ public class BoardDAOTest {
 		if(boardVO != null) {
 			logger.info("글번호 : " + boardVO.getBid() );
 			logger.info("글제목 : " + boardVO.getBtitle() );
-			logger.info("글내용 : " + boardVO.getBcontext() );
+			logger.info("글내용 : " + boardVO.getBcontent() );
 			logger.info("글태그 : " + boardVO.getBtag() );
 			logger.info("조회수 : " + boardVO.getBview_cnt() );
 			logger.info("작성자 : " + boardVO.getBwriter() );
@@ -65,7 +65,7 @@ public class BoardDAOTest {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setBcategory("1");
 		boardVO.setBtitle("첫번째 게시물");
-		boardVO.setBcontext("첫번째 게시물입니다.");
+		boardVO.setBcontent("첫번째 게시물입니다.");
 		boardVO.setBtag("1");
 		boardVO.setBwriter("1");
 
@@ -84,7 +84,7 @@ public class BoardDAOTest {
 		boardVO.setBid(1);
 		boardVO.setBcategory("1");
 		boardVO.setBtitle("수정된 첫번째 게시물.");
-		boardVO.setBcontext("수정된 첫번째 게시물입니다.");
+		boardVO.setBcontent("수정된 첫번째 게시물입니다.");
 		boardVO.setBtag("1-1");
 
 		int result = boardDAO.updateBoard(boardVO);
