@@ -19,6 +19,7 @@
 	});
 </script>
 
+</head>
 <body>
 <article>
 		<div class="container" role="main">
