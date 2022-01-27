@@ -31,7 +31,7 @@ public class BoardController {
 	
 	// 글쓰기 버튼클릭시 
 	@RequestMapping("/boardForm")
-	public String boardForm() {
+	public String boardForm(@ModelAttribute("boardVO") BoardVO vo, Model model) {
 		return "board/BoardForm";
 	}
 	
@@ -41,8 +41,13 @@ public class BoardController {
 	 * 			+ 브라우저의 뒤로가기 버튼의 대응책 => 글쓰기 화면 -> 저장 단계(서버) -> 리스트 화면 순서인데 뒤로가기로 가면 저장단계를 계속 중복으로 가게됨 해당인자사용시 글쓰기화면으로 이동함
 	 * */
 	@RequestMapping(value = "/saveBoard", method = RequestMethod.POST)
-	public String saveBoard(@ModelAttribute("BoardVO") BoardVO boardVO, RedirectAttributes rttr) throws Exception{
-		boardService.insertBoard(boardVO);
+	public String saveBoard(@ModelAttribute("BoardVO") BoardVO boardVO, @RequestParam("mode") String mode, RedirectAttributes rttr) throws Exception{
+		// 수정되었다면
+		if (mode.equals("edit")) {
+			boardService.updateBoard(boardVO);
+		} else {
+			boardService.insertBoard(boardVO);
+		}
 		// 돌아갈 페이지 주소를 지정
 		return "redirecet:/board/getBoardList";
 	}
@@ -51,6 +56,20 @@ public class BoardController {
 	public String getBoardContent(Model model, @RequestParam("bid") int bid) throws Exception{
 		model.addAttribute("boardContent",boardService.getBoardContent(bid));
 		return "board/boardContent";
+	}
+	
+	@RequestMapping(value = "/editForm", method = RequestMethod.GET)
+	public String editForm(@RequestParam("bid") int bid, @RequestParam("mode") String mode, Model model) throws Exception {
+		model.addAttribute("boardContent", boardService.getBoardContent(bid));
+		model.addAttribute("mode", mode);
+		model.addAttribute("boardVO", new BoardVO());	//!! 추가 폼과 연계하기 위함
+		return "board/boardForm";
+	}
+	
+	@RequestMapping(value = "/deleteBoard", method = RequestMethod.GET)
+	public String deleteBoard(RedirectAttributes rttr, @RequestParam("bid") int bid) throws Exception {
+		boardService.deleteBoard(bid);
+		return "redirect:/board/getBoardList";
 	}
 }
 /*
