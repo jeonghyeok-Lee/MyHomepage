@@ -8,7 +8,7 @@
 <head>
 <meta charset="EUC-KR">
 
-<title>Insert title here</title>
+<title>글 작성하기</title>
 <script>
 	$(document).on('click', '#btnSave', function(e){	// 버튼클릭시 
 		e.preventDefault();
@@ -20,7 +20,7 @@
 		location.href="${pageContext.request.contextPath}/board/getBoardList";
 	});
 	
- 	$(document).ready(function(){
+/*  	$(document).ready(function(){
 		var mode = '<c:out value="${mode}"/>';
 		if ( mode == 'edit'){			//입력 폼 셋팅
 			$("#bwriter").prop('readonly', true);
@@ -28,11 +28,11 @@
 			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
 			$("#bwriter").val('<c:out value="${boardContent.bwriter}"/>');
 			$("#btitle").val('<c:out value="${boardContent.btitle}"/>');
-			$("#bcontent").val('<c:out value="${fn:replace(boardContent.bcontent,/(?:\r\n|\r|\n)/g,'<br/>')}"/>');
+			$("#bcontent").val('<c:out value="${boardContent.bcontent}"/>');
 			$("#btag").val('<c:out value="${boardContent.btag}"/>');
 		}
 	});
-
+ */
 </script>
 
 </head>

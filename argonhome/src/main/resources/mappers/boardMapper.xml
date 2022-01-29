@@ -26,7 +26,7 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 	<insert id ="insertBoard" parameterType = "com.argonhome.web.board.model.BoardVO">
 		INSERT INTO BOARD(BCATEGORY, BTITLE, BCONTENT, BTAG, BVIEW_CNT,BWRITER, BWRITE_DY, BEDIT_DY)
 		VALUES(
-			#{bcategory}
+			now()
 			,#{btitle}
 			,#{bcontent}
 			,#{btag}

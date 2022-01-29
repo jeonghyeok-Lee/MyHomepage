@@ -32,7 +32,7 @@ public class BoardController {
 	// 글쓰기 버튼클릭시 
 	@RequestMapping("/boardForm")
 	public String boardForm(@ModelAttribute("boardVO") BoardVO vo, Model model) {
-		return "board/BoardForm";
+		return "board/boardForm";
 	}
 	
 	/*
@@ -49,7 +49,7 @@ public class BoardController {
 			boardService.insertBoard(boardVO);
 		}
 		// 돌아갈 페이지 주소를 지정
-		return "redirecet:/board/getBoardList";
+		return "redirect:/board/getBoardList";
 	}
 	
 	@RequestMapping(value = "/getBoardContent", method= RequestMethod.GET)
