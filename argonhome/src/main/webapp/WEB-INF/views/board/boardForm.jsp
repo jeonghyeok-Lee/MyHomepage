@@ -20,11 +20,11 @@
 		location.href="${pageContext.request.contextPath}/board/getBoardList";
 	});
 	
-/*  	$(document).ready(function(){
+ 	$(document).ready(function(){
 		var mode = '<c:out value="${mode}"/>';
 		if ( mode == 'edit'){			//ÀÔ·Â Æû ¼ÂÆÃ
 			$("#bwriter").prop('readonly', true);
-			$("input:hidden[name='bid']").val(<c:out value="${boardContent.bid}"/>);
+			$("input:hidden[name='bid']").val('<c:out value="${boardContent.bid}"/>');
 			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
 			$("#bwriter").val('<c:out value="${boardContent.bwriter}"/>');
 			$("#btitle").val('<c:out value="${boardContent.btitle}"/>');
@@ -32,7 +32,7 @@
 			$("#btag").val('<c:out value="${boardContent.btag}"/>');
 		}
 	});
- */
+
 </script>
 
 </head>
