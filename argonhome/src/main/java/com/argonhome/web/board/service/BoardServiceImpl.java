@@ -30,12 +30,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO getBoardContent(int bid) throws Exception {
 		BoardVO boardVO = new BoardVO();
-		boardVO = boardDAO.getBoardContent(bid);
-		try {
-			boardDAO.updateViewCnt(bid);
-		}catch(RuntimeException e) {
-			throw new NotFoundException();
-		}
+		boardVO = boardDAO.getBoardContent(bid);    
+		boardVO.setBid(bid);
+		boardVO.setBcategory("11111111111111111111111111111111111111111111111111111111");
+		boardDAO.updateBoard(boardVO);
+//		try {
+//			boardVO.setBid(bid);
+//			boardVO.setBcategory("11111111111111111111111111111111111111111111111111111111");
+//			boardDAO.updateBoard(boardVO);
+//		}catch(RuntimeException e) {
+//			throw new CommonExceptionAdvice();
+//		}
 		return boardVO;
 	}
 

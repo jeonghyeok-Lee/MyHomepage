@@ -71,6 +71,14 @@ public class BoardController {
 		boardService.deleteBoard(bid);
 		return "redirect:/board/getBoardList";
 	}
+	
+	//error.controller로 분리하였기에 아래의 handler를 사용할 필요가 없어짐
+	//@ExceptionHandler(RuntimeException.class)
+	public String exceptionHandler(Model model, Exception e){
+		//logger.info("exception : " + e.getMessage());
+		model.addAttribute("exception", e);
+		return "error/exception";
+	}
 }
 /*
  * 전체적인 흐름을 보면 
