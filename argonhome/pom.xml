@@ -35,8 +35,9 @@
 				
 		<!-- AspectJ -->
 		<dependency>
+<!-- 	<groupId>org.aspectj</groupId><artifactId>aspectjrt</artifactId><version>${org.aspectj-version}</version> -->
 			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjrt</artifactId>
+			<artifactId>aspectjweaver</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		

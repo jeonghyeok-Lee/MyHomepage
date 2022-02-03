@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.argonhome.web.board.dao.BoardDAO;
 import com.argonhome.web.board.model.BoardVO;
@@ -27,20 +28,18 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.insertBoard(boardVO);
 	}
 
+	@Transactional
 	@Override
 	public BoardVO getBoardContent(int bid) throws Exception {
 		BoardVO boardVO = new BoardVO();
-		boardVO = boardDAO.getBoardContent(bid);    
-		boardVO.setBid(bid);
-		boardVO.setBcategory("11111111111111111111111111111111111111111111111111111111");
-		boardDAO.updateBoard(boardVO);
-//		try {
-//			boardVO.setBid(bid);
-//			boardVO.setBcategory("11111111111111111111111111111111111111111111111111111111");
-//			boardDAO.updateBoard(boardVO);
-//		}catch(RuntimeException e) {
-//			throw new CommonExceptionAdvice();
-//		}
+		//boardVO = boardDAO.getBoardContent(bid);    
+		try {
+			boardVO.setBid(bid);
+			boardVO.setBcategory("11111111111111111111111111111111");
+			boardDAO.updateBoard(boardVO);
+		}catch(RuntimeException e) {
+			throw new NotFoundException();
+		}
 		return boardVO;
 	}
 

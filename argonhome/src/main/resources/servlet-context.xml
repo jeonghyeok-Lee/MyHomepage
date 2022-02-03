@@ -3,9 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+	https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans 
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
@@ -30,7 +33,7 @@
 	<!-- 
 	spring에서 Bean을 등록시 클래스를 검색하여 클래스에 특정 어노테이션(@Controller, @Service, @Repository등)이 붙어있으면 Spring Bean클래스라 인식하여 등록하게 되는데
 	이때 클래스를 검색하는 기능이 component-scan으로 base-package의 내용을 기준으로 하위 검색-->
-	<context:component-scan base-package="com.argonhome" />
+	<context:component-scan base-package="com.argonhome" />	
 	
 </beans:beans>
 <!-- servlet-context.xml파일은 웹 어플리케이션내에 있는 서블릿들을 관리, 정보를 공유하도록 해주는 등록정보 -->

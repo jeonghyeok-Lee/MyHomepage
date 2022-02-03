@@ -6,16 +6,17 @@ import java.util.stream.Collectors;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 // 예외 발생시 동일한 포맷의 리턴값을 넘겨주기 위하여 사용함
 // JSON타입으로 포맷하여 예외처리값 생성 
 // 데이터 전달시 JSON파일로 많이 하기 때문
 public class ErrorResponse {
 
-	private String message;
-	private int status;
-	private List<FieldError> errors;
-	private String code;
+	private String message;				// 에러 메세지
+	private int status;					// http status code
+	private List<FieldError> errors;	// 요청값에 대한 field, value, reason / @Valid어노테이션으로 JSR 303:Bean Validation 검증 / null이아니면 빈 배열 응답
+	private String code;				// 에러에 할당되는 유니크 코드값
 	
 	// 해당기능과 동일한 기능을 수행하는 어노테이션 @Getter
 	public String getMessage() {return message;}
@@ -51,6 +52,12 @@ public class ErrorResponse {
 	//BindingResult -> ErrorCode 매개변수를 Bean에 binding시에 발생하는 오류정보를 받기위함
 	public static ErrorResponse of(final ErrorCode code, final BindingResult bindingResult) {
 		return new ErrorResponse(code,FieldError.of(bindingResult));
+	}
+	
+	public static ErrorResponse of(MethodArgumentTypeMismatchException e) {
+		final String value = e.getValue() == null ? "" : e.getValue().toString();
+		final List<ErrorResponse.FieldError> errors = ErrorResponse.FieldError.of(e.getName(), value, e.getErrorCode());
+		return new ErrorResponse(ErrorCode.INVALID_INPUT_VALUE, errors);
 	}
 	
 	public static class FieldError {
