@@ -4,12 +4,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.argonhome.web.board.model.BoardVO;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.argonhome.web.board.model.BoardVO;
+import com.argonhome.web.common.Pagination;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO {
@@ -18,9 +17,9 @@ public class BoardDAOImpl implements BoardDAO {
 	private SqlSession sqlSession;	// 해당 객체를 통해 boardMapper에 작성해 놓은 sql문 실행 가능
 	
 	@Override
-	public List<BoardVO> getBoardList() throws Exception {
+	public List<BoardVO> getBoardList(Pagination pagination) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("com.argonhome.web.board.boardMapper.getBoardList");
+		return sqlSession.selectList("com.argonhome.web.board.boardMapper.getBoardList", pagination);
 	}
 
 	@Override
@@ -51,6 +50,11 @@ public class BoardDAOImpl implements BoardDAO {
 	public int updateViewCnt(int bid) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update("com.argonhome.web.board.boardMapper.updateViewCnt",bid);
+	}
+
+	@Override
+	public int getBoardListCnt() throws Exception {
+		return sqlSession.selectOne("com.argonhome.web.board.boardMapper.getBoardListCnt");
 	}
 
 }

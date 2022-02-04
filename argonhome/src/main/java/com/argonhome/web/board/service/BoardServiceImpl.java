@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.argonhome.web.board.dao.BoardDAO;
 import com.argonhome.web.board.model.BoardVO;
+import com.argonhome.web.common.Pagination;
 import com.argonhome.web.error.controller.NotFoundException;
 
 // service는 controller의 요청에 따라 필요한 비즈니스 로직을 처리. 필요한경우 db관련 처리를 진행
@@ -19,8 +20,8 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO;
 
 	@Override
-	public List<BoardVO> getBoardList() throws Exception {
-		return boardDAO.getBoardList();
+	public List<BoardVO> getBoardList(Pagination pagination) throws Exception {
+		return boardDAO.getBoardList(pagination);
 	}
 	
 	@Override
@@ -32,14 +33,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO getBoardContent(int bid) throws Exception {
 		BoardVO boardVO = new BoardVO();
-		//boardVO = boardDAO.getBoardContent(bid);    
-		try {
-			boardVO.setBid(bid);
-			boardVO.setBcategory("11111111111111111111111111111111");
-			boardDAO.updateBoard(boardVO);
-		}catch(RuntimeException e) {
-			throw new NotFoundException();
-		}
+		boardVO = boardDAO.getBoardContent(bid);    
 		return boardVO;
 	}
 
@@ -52,5 +46,10 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteBoard(int bid) throws Exception {
 		boardDAO.deleteBoard(bid);
 		
+	}
+
+	@Override
+	public int getBoardListCnt() throws Exception {
+		return boardDAO.getBoardListCnt();
 	}
 }

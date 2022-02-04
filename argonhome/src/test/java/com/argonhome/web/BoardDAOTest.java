@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.argonhome.web.board.dao.BoardDAO;
 import com.argonhome.web.board.model.BoardVO;
+import com.argonhome.web.common.Pagination;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -28,21 +29,16 @@ public class BoardDAOTest {
 	@Inject
 	private BoardDAO boardDAO;
 	
-	@Test  @Ignore
-	public void testGetBoardList() throws Exception {
-		List<BoardVO> boardList = boardDAO.getBoardList();
-		logger.info("\n Board List \n ");
-		if(boardList.size() > 0) {
-			for(BoardVO list : boardList) {
-				logger.info(list.getBtitle());
-			}
-		} else {
-			logger.info("데이터가 없습니다.");
-		}
-	}
+	/*
+	 * @Test @Ignore public void testGetBoardList(Pagination pagination) throws
+	 * Exception { List<BoardVO> boardList = boardDAO.getBoardList(pagination);
+	 * logger.info("\n Board List \n "); if(boardList.size() > 0) { for(BoardVO list
+	 * : boardList) { logger.info(list.getBtitle()); } } else {
+	 * logger.info("데이터가 없습니다."); } }
+	 */
 	
 	// Ignore-> 해당 메소드를 실행시키지 않는 기능
-	@Test 
+	@Test @Ignore
 	public void testGetBoardContent() throws Exception {
 		BoardVO boardVO = boardDAO.getBoardContent(1);
 		logger.info("\n Board List \n ");
@@ -60,21 +56,27 @@ public class BoardDAOTest {
 		}
 	}
 	
-	@Test @Ignore 
+	@Test 
 	public void testInsertBoard() throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setBcategory("1");
-		boardVO.setBtitle("첫번째 게시물");
-		boardVO.setBcontent("첫번째 게시물입니다.");
+		//boardVO.setBtitle("첫번째 게시물");
+		//boardVO.setBcontent("첫번째 게시물입니다.");
 		boardVO.setBtag("1");
 		boardVO.setBwriter("1");
+		//반복작업으로 게시물 생성
+		for( int i = 1; i < 1234 ; i++) {
+			boardVO.setBtitle(i + " 번째 게시물 입니다.");
+			boardVO.setBcontent(i + " 번째 게시물 입니다.");
+			int result = boardDAO.insertBoard(boardVO);
+			logger.info("\n Insert Board Result " +result);
 
-		int result = boardDAO.insertBoard(boardVO);
-		logger.info("\n Insert Board Result " +result);
-		if(result == 1) {
-			logger.info("\n 게시물 등록 성공 ");
-		} else {
-			logger.info("\n 게시물 등록 실패");
+			if(result == 1) {
+				logger.info("\n 게시물 등록 성공 ");
+			} else {
+				logger.info("\n 게시물 등록 실패");
+			}
+
 		}
 	}
 

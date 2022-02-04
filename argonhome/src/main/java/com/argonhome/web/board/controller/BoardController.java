@@ -2,9 +2,6 @@ package com.argonhome.web.board.controller;
 
 import javax.inject.Inject;
 
-import com.argonhome.web.board.service.BoardService;
-import com.argonhome.web.board.model.BoardVO;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.argonhome.web.board.model.BoardVO;
+import com.argonhome.web.board.service.BoardService;
+import com.argonhome.web.common.Pagination;
 
 @Controller
 // RequestMapping(value ="") 어노테이션을 통해서 주소를 조합할 수 있다.
@@ -23,9 +24,21 @@ public class BoardController {
 	private BoardService boardService;
 	
 	// 이곳을 지나면서 주소:포트/web/board/getBoardList가 된다.
+	// 수정 1 페이징을 위해 @RequestParam 매개변수 추가 @RequestParam-> 특정 매개변수를 View에서 전달 받을 수 있음
 	@RequestMapping(value = "/getBoardList", method = RequestMethod.GET)
-	public String getBoardList(Model model) throws Exception{
-		model.addAttribute("boardList",boardService.getBoardList());
+	public String getBoardList(
+			Model model, 
+			@RequestParam(required = false, defaultValue = "1") int page, // 화면에서 전달해준 데이터에서 page의 값을 받음 데이터가 없다면 1로 설정
+			@RequestParam(required = false, defaultValue = "1") int range
+			) throws Exception{
+		
+		//수정1
+		int listCnt = boardService.getBoardListCnt(); // 전체 게시글 개수
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+		model.addAttribute("pagination",pagination);
+		
+		model.addAttribute("boardList",boardService.getBoardList(pagination));
 		return "board/index";
 	}
 	
@@ -79,6 +92,8 @@ public class BoardController {
 		model.addAttribute("exception", e);
 		return "error/exception";
 	}
+	
+	
 }
 /*
  * 전체적인 흐름을 보면 

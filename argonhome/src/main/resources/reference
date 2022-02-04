@@ -6,3 +6,17 @@
 - https://springboot.tistory.com/25
 - https://blog.naver.com/PostView.naver?blogId=haskim0716n&logNo=221798681118
 - https://freehoon.tistory.com/109
+
+properties파일을 만들어 데이터와 클래스 분할
+- wedul.site/151
+- https://ktko.tistory.com/entry/Spring-properties-%EC%9D%BD%EC%96%B4%EC%98%A4%EA%B8%B0
+
+classpath 경로 범위
+- https://developer-joe.tistory.com/225
+
+xml 설정 방법
+- https://atoz-develop.tistory.com/entry/Spring-%EC%8A%A4%ED%94%84%EB%A7%81-XML-%EC%84%A4%EC%A0%95-%ED%8C%8C%EC%9D%BC-%EC%9E%91%EC%84%B1-%EB%B0%A9%EB%B2%95-%EC%A0%95%EB%A6%AC
+
+
+깃 한글 파일명 사용문제 해결
+- https://edykim.com/ko/post/git-fix-problem-using-filename-core.quotepath/

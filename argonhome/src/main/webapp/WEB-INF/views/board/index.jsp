@@ -5,6 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 
+반복적인 URL 사용함(var url = "${pageContext.request.contextPath}/board/getBoardList")으로 c:url을 이용하여 공통 변수처럼 선언
+param을이용하여 매개변수도 같이 보낼수 있음
+-->
+<c:url var="getBoardListURL" value="/board/getList">
+	<c:param name="page" value="${pagination.getPage()}"/>
+	<c:param name="range" value="${pagination.getRange()}"/>
+</c:url>
 <meta charset="EUC-KR">
 <script>
 	$(document).on('click', '#btnWriteForm', function(e) {
@@ -56,11 +64,10 @@
 								<c:forEach var="list" items="${boardList}">
 									<tr>
 										<td><c:out value="${list.bid}" /></td>
-										<td>
-											<a href="#" onClick="contentView(<c:out value="${list.bid}" />)"> 
-												<c:out value="${list.btitle}" />
-											</a>
-										</td>
+										<td><a href="#"
+											onClick="contentView(<c:out value="${list.bid}" />)"> <c:out
+													value="${list.btitle}" />
+										</a></td>
 										<td><c:out value="${list.bwriter}" /></td>
 										<td><c:out value="${list.bview_cnt}" /></td>
 										<td><c:out value="${list.bwrite_dy}" /></td>
@@ -71,6 +78,29 @@
 					</tbody>
 				</table>
 			</div>
+			<!-- 현재 모든 게시물이 다 뜸으로 수정 필요 -->
+			<!-- pagination{s} -->
+			<div id="paginationBox">
+				<ul class="pagination">
+					<c:if test="${pagination.prev}">
+						<li class="page-item"> <!-- 부트스트렙에서 사용되는 페이징에 대한 스타일시트 기본 사용법 -->
+							<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
+					</c:if>
+					<!-- 이전/다음 버튼을 위한 계산식 -->
+					<c:forEach begin="${pagination.startPage}"		
+						end="${pagination.endPage}" var="idx">
+						<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+							<a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a>
+						</li>
+					</c:forEach>
+					
+					<c:if test="${pagination.next}">
+						<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+					</c:if>
+				</ul>
+			</div>
+			<!-- pagination{e} -->
+			
 			<div>
 				<button type="button" class="btn btn-sm btn-primary"
 					id="btnWriteForm">글쓰기</button>
