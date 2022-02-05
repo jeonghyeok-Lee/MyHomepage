@@ -107,7 +107,7 @@ public class Pagination {
 		this.range = range;
 		this.listCnt = listCnt;
 		
-		this.pageCnt = (int) Math.ceil((double)listCnt/listSize); //반올림
+		this.pageCnt = (int) Math.ceil((double)listCnt/(double)listSize); //반올림
 		this.startPage = (range - 1) * rangeSize + 1 ;
 		this.endPage = range * rangeSize;
 		this.startList = (page - 1) * listSize;		// page - 1인 이유는 조회할 첫번째 글은 1이 아닌 0임(db에서 첫번째 row- 0) 즉 현재 = (페이지번호-1)*페이지 사이즈

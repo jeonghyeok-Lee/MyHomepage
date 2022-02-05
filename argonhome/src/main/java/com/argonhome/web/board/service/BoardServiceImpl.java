@@ -33,6 +33,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO getBoardContent(int bid) throws Exception {
 		BoardVO boardVO = new BoardVO();
+		boardDAO.updateViewCnt(bid);				// Á¶È¸¼ö
 		boardVO = boardDAO.getBoardContent(bid);    
 		return boardVO;
 	}

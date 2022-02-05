@@ -10,31 +10,30 @@
 
 <title>글 작성하기</title>
 <script>
-	$(document).on('click', '#btnSave', function(e){	// 버튼클릭시 
-		e.preventDefault();
-		$("#form").submit();							//form이라는 id를 가진 객체를 서버에 전송
-	});
+$(document).on('click', '#btnSave', function(e){	// 버튼클릭시 
+	e.preventDefault();
+	$("#form").submit();							//form이라는 id를 가진 객체를 서버에 전송
+});
 
-	$(document).on('click', '#btnList', function(e){
-		e.preventDefault();
-		location.href="${pageContext.request.contextPath}/board/getBoardList";
-	});
+$(document).on('click', '#btnList', function(e){
+	e.preventDefault();
+	location.href="${pageContext.request.contextPath}/board/getBoardList";
+});
 	
- 	$(document).ready(function(){
-		var mode = '<c:out value="${mode}"/>';
-		if ( mode == 'edit'){			//입력 폼 셋팅
-			$("#bwriter").prop('readonly', true);
-			$("input:hidden[name='bid']").val('<c:out value="${boardContent.bid}"/>');
-			$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
-			$("#bwriter").val('<c:out value="${boardContent.bwriter}"/>');
-			$("#btitle").val('<c:out value="${boardContent.btitle}"/>');
-			$("#bcontent").val('<c:out value="${boardContent.bcontent}"/>');
-			$("#btag").val('<c:out value="${boardContent.btag}"/>');
-		}
-	});
+$(document).ready(function(){
+	var mode = '<c:out value="${mode}"/>';
+	if ( mode == 'edit'){			//입력 폼 셋팅
+		$("#bwriter").prop('readonly', true);
+		$("input:hidden[name='bid']").val('<c:out value="${boardContent.bid}"/>');
+		$("input:hidden[name='mode']").val('<c:out value="${mode}"/>');
+		$("#bwriter").val('<c:out value="${boardContent.bwriter}"/>');
+		$("#btitle").val('<c:out value="${boardContent.btitle}"/>');
+		$("#bcontent").val('<c:out value="${boardContent.bcontent}"/>');
+		$("#btag").val('<c:out value="${boardContent.btag}"/>');
+	}
+});
 
 </script>
-
 </head>
 <body>
 

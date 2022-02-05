@@ -65,7 +65,7 @@ public class BoardDAOTest {
 		boardVO.setBtag("1");
 		boardVO.setBwriter("1");
 		//반복작업으로 게시물 생성
-		for( int i = 1; i < 1234 ; i++) {
+		for( int i = 1; i < 201 ; i++) {
 			boardVO.setBtitle(i + " 번째 게시물 입니다.");
 			boardVO.setBcontent(i + " 번째 게시물 입니다.");
 			int result = boardDAO.insertBoard(boardVO);

@@ -9,23 +9,23 @@
 반복적인 URL 사용함(var url = "${pageContext.request.contextPath}/board/getBoardList")으로 c:url을 이용하여 공통 변수처럼 선언
 param을이용하여 매개변수도 같이 보낼수 있음
 -->
-<c:url var="getBoardListURL" value="/board/getList">
+<%-- <c:url var="getBoardListURL" value="/board/getList">
 	<c:param name="page" value="${pagination.getPage()}"/>
 	<c:param name="range" value="${pagination.getRange()}"/>
-</c:url>
+</c:url> --%>
 <meta charset="EUC-KR">
 <script>
-	$(document).on('click', '#btnWriteForm', function(e) {
-		e.preventDefault();
-		location.href = "${pageContext.request.contextPath}/board/boardForm";
+$(document).on('click', '#btnWriteForm', function(e) {
+	e.preventDefault();
+	location.href = "${pageContext.request.contextPath}/board/boardForm";
 
-	});
+});
 	
-	function contentView(bid){
-		var url = "${pageContext.request.contextPath}/board/getBoardContent";
-		url = url + "?bid=" +bid;
-		location.href = url;
-	}
+function contentView(bid){
+	var url = "${pageContext.request.contextPath}/board/getBoardContent";
+	url = url + "?bid=" +bid;
+	location.href = url;
+}
 </script>
 
 <title>게시판</title>
@@ -82,20 +82,23 @@ param을이용하여 매개변수도 같이 보낼수 있음
 			<!-- pagination{s} -->
 			<div id="paginationBox">
 				<ul class="pagination">
+				
+					<!-- 이전페이지 버튼 -->
 					<c:if test="${pagination.prev}">
 						<li class="page-item"> <!-- 부트스트렙에서 사용되는 페이징에 대한 스타일시트 기본 사용법 -->
 							<a class="page-link" href="#" onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
 					</c:if>
-					<!-- 이전/다음 버튼을 위한 계산식 -->
-					<c:forEach begin="${pagination.startPage}"		
-						end="${pagination.endPage}" var="idx">
-						<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
-							<a class="page-link" href="#" onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a>
+					
+					<c:forEach var="number" begin="${pagination.startPage}" end="${pagination.endPage}" >
+						<li class="page-item" <c:out value="${pagination.page == idx ? 'active' : ''}"/>>
+							<a class="page-link" href = "#" onClick="pagination('${number}', '${pagination.range}', '${pagination.rangeSize}')">${number}</a>
 						</li>
 					</c:forEach>
 					
+					<!-- 다음페이지 버튼 -->
 					<c:if test="${pagination.next}">
-						<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+						<li class="page-item">
+						<a class="page-link" href="#" onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
 					</c:if>
 				</ul>
 			</div>

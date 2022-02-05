@@ -21,7 +21,7 @@ namespace!! 중요 보통 패키지명(com.argonhome.web) + 프로그램명(boar
 	
 	<!-- row의 개수를 가져오기 위한 sql문 추가 (페이징)-->
 	<select id="getBoardListCnt" resultType="int">
-		SELECT count(*) as listCnt
+		SELECT count(BID) as listCnt
 		FROM BOARD
 	</select>	
 	
